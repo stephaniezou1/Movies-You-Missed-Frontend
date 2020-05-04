@@ -12,7 +12,35 @@ let render = (movie) => {
     
     // outer div
     let outerDiv = document.createElement("div")
-        outerDiv.className = "ui fluid card"
+        outerDiv.className = "ui fluid special card"
+    
+    // special card div
+        let secondDiv = document.createElement("div")
+            secondDiv.className = "card"
+    
+            let blurringDiv = document.createElement("div")
+                blurringDiv.className = "blurring dimmable image"
+
+                let dimmerDiv = document.createElement("div")
+                    dimmerDiv.className = "ui dimmer"
+
+                    let hiddenContentDiv = document.createElement("div")
+                        hiddenContentDiv.className = "content"
+
+                        let centerDiv = document.createElement("div")
+                            centerDiv.className = "center"
+
+                            let uiInvertedButtonDiv = document.createElement("div")
+                                uiInvertedButtonDiv.className = "ui inverted button"
+                                uiInvertedButtonDiv.innerText = `Genre: ${movie.genre_name}, Description: ${movie.overview}`
+                                // uiInvertedButtonDiv.innerHTML = `<div class="ui inverted button">Add Friend</div></div>`
+                        
+                        centerDiv.append(uiInvertedButtonDiv)
+                    hiddenContentDiv.append(centerDiv)
+                dimmerDiv.append(hiddenContentDiv)
+            blurringDiv.append(dimmerDiv)
+        secondDiv.append(blurringDiv)
+    outerDiv.append(secondDiv)
     
     // content div
     let contentDiv = document.createElement("div")
@@ -50,6 +78,10 @@ let render = (movie) => {
             Comment`
 
     extraContent.append(likeSpan, commentSpan)
+
+    // hidden content aka description and genre and form for comment (perhaps)
+
+
     
     
     // append all to outer div
@@ -62,6 +94,5 @@ let render = (movie) => {
     // Add event listener for more information
 
     outerDiv.addEventListener("click", (evt) => {
-        
     })
 }
