@@ -1,6 +1,8 @@
-* {
+.movies {
+    padding: 2em;
 }
 
 .comment-container {
     padding: .5em;
 }
+    

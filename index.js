@@ -1,6 +1,3 @@
-console.log(movieListCollectionDiv)
-
-
 let renderMovie = (movie) => {
     
     // outer div
@@ -62,7 +59,7 @@ let renderMovie = (movie) => {
             // let likeButton = document.createElement("i")
             // likeButton.className = "like icon"
             // likeButton.innerText = "Like"
-            likeSpan.innerHTML = `<i class="like icon"></i> Like`
+            likeSpan.innerHTML = `<i class="like icon"></i>${movie.likes} Likes`
         // likeSpan.append(likeButton)
         let commentSpan = document.createElement("span")
             commentSpan.className = "left floated comment"
@@ -81,7 +78,16 @@ let renderMovie = (movie) => {
         $(this).parent().find(".ui.dimmer").dimmer("toggle");
       });
 
-    // add likes and comments event listeners here, question: do I need to build out likes and comments as movie attributes
+    // add likes and comments event listeners here
+
+    likeSpan.addEventListener("click", () => {
+        handleLike(movie, likeSpan)
+      })
+
+    commentSpan.addEventListener("click", () => {
+        
+    })
+    
 }
 
 
