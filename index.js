@@ -1,20 +1,13 @@
-movieListCollectionDiv = document.getElementById("movie-list")
 console.log(movieListCollectionDiv)
 
-fetch(`http://localhost:3000/movies`)
-    .then(response => response.json())
-    .then((arrOfMovies) => {
-        // console.log(arrOfMovies)
-        arrOfMovies.forEach(render)
-    })
 
-let render = (movie) => {
+let renderMovie = (movie) => {
     
     // outer div
     let outerDiv = document.createElement("div")
-        outerDiv.className = "ui fluid special card"
+        outerDiv.className = "ui fluid card"
     
-    // special card div
+    // second div
         let secondDiv = document.createElement("div")
             secondDiv.className = "card"
     
@@ -32,7 +25,7 @@ let render = (movie) => {
 
                             let uiInvertedButtonDiv = document.createElement("div")
                                 uiInvertedButtonDiv.className = "ui inverted button"
-                                uiInvertedButtonDiv.innerText = `Genre: ${movie.genre_name}, Description: ${movie.overview}`
+                                uiInvertedButtonDiv.innerText = `Genre: ${movie.genre_description}, Description: ${movie.overview}`
                                 // uiInvertedButtonDiv.innerHTML = `<div class="ui inverted button">Add Friend</div></div>`
                         
                         centerDiv.append(uiInvertedButtonDiv)
@@ -40,7 +33,6 @@ let render = (movie) => {
                 dimmerDiv.append(hiddenContentDiv)
             blurringDiv.append(dimmerDiv)
         secondDiv.append(blurringDiv)
-    outerDiv.append(secondDiv)
     
     // content div
     let contentDiv = document.createElement("div")
@@ -50,7 +42,7 @@ let render = (movie) => {
             titleDiv.innerText = movie.title
         let yearAndLengthDiv = document.createElement("div")
             yearAndLengthDiv.className = "meta"
-            yearAndLengthDiv.innerText = `Released on ${movie.year}, ${movie.length}`
+            yearAndLengthDiv.innerText = `Released on ${movie.year} - Runtime of ${movie.length}`
        
     contentDiv.append(titleDiv, yearAndLengthDiv)
     
@@ -66,33 +58,42 @@ let render = (movie) => {
     let extraContent = document.createElement("div")
         extraContent.className = "extra content"
         let likeSpan = document.createElement("span")
-            likeSpan.className = "left floated like"
+            likeSpan.className = "right floated like"
             // let likeButton = document.createElement("i")
             // likeButton.className = "like icon"
             // likeButton.innerText = "Like"
             likeSpan.innerHTML = `<i class="like icon"></i> Like`
         // likeSpan.append(likeButton)
         let commentSpan = document.createElement("span")
-            commentSpan.className = "right floated comment"
+            commentSpan.className = "left floated comment"
             commentSpan.innerHTML = `<i class="comment icon"></i>
             Comment`
 
     extraContent.append(likeSpan, commentSpan)
-
-    // hidden content aka description and genre and form for comment (perhaps)
-
-
     
-    
-    // append all to outer div
-    outerDiv.append(imageOuterDiv, contentDiv, extraContent)
+    // append all to outer div except image
+    outerDiv.append(secondDiv, imageOuterDiv, contentDiv, extraContent)
 
     movieListCollectionDiv.append(outerDiv)
 
+    // click event for image to show description
+      $(".image").click(function() {
+        $(this).parent().find(".ui.dimmer").dimmer("toggle");
+      });
+
     // add likes and comments event listeners here, question: do I need to build out likes and comments as movie attributes
-
-    // Add event listener for more information
-
-    outerDiv.addEventListener("click", (evt) => {
-    })
 }
+
+
+commentHeader.addEventListener("click", (evt) => {
+    addComment = !addComment;
+    if (addComment) {
+        commentContainer.style.display = "block";
+    } else {
+        commentContainer.style.display = "none";
+    }
+})
+
+homeHeader.addEventListener("click", (evt) => {
+    commentContainer.style.display = "none";
+})
