@@ -1,6 +1,11 @@
 class Movie {
+
+    static all = []
+    
     constructor(movie) {
         this.movie = movie
+
+        Movie.all.push(this)
 
         // card and blur effect
         this.outerDiv = document.createElement("div")
@@ -62,6 +67,7 @@ class Movie {
         this.commentSpan = document.createElement("span")
             this.commentSpan.className = "left floated comment"
             this.commentSpan.innerHTML = `<i class="comment icon"></i>${movie.comments.length} Comments`
+            // this.commentSpan.style.display = "none"
         
         // display for comments
         this.uiComments = document.createElement("div")
@@ -72,37 +78,17 @@ class Movie {
         this.uiComments.append(this.uiHeader)
 
         this.movie.comments.forEach((singleComment) => {
-            
-            this.author = singleComment.author
-            this.content = singleComment.content
-            
-            this.commentDiv = document.createElement("div")
-                this.commentDiv.className = "comment"
-            this.eachComment = document.createElement("div")
-                this.eachComment.className = "content"
-                this.authorName = document.createElement("a")
-                    this.authorName.innerText = author
-                this.textContent = document.createElement("div")
-                    this.textContent.innerText = content
-                this.deleteBtn = document.createElement("button")
-                    this.deleteBtn.className = "ui icon button"
-                    this.deleteBtn.innerHTML = `<i class="cloud icon"></i>`
-            this.eachComment.append(this.authorName, this.textContent, this.deleteBtn)
-            this.commentDiv.append(this.eachComment)
-
-            this.uiComments.append(this.commentDiv)
+            new Comment(singleComment, this.uiComments)
         })
         
         this.commentForm = document.createElement("form")
             this.commentForm.className = "ui reply form"
             this.authorField = document.createElement("div")
                 this.authorField.className = "field"
-            this.authorText = document.createElement("textarea")
-            this.authorField.append(this.authorText)
+                this.authorField.innerHTML = `<input type="text" name="first name" placeholder="Your Name">`
             this.commentField = document.createElement("div")
                 this.commentField.className = "field"
-            this.contentText = document.createElement("textarea")
-            this.commentField.append(this.contentText)
+                this.commentField.innerHTML = `<input type="text" name="last name" placeholder="Comment">`
             this.submitBtn = document.createElement("div")
                 this.submitBtn.className = "ui blue labeled submit icon button"
                 this.submitBtn.innerHTML = `<i class="icon edit"></i> Add Comment`
@@ -121,35 +107,28 @@ class Movie {
 
         // likes and comments event listeners
 
-        this.likeSpan.addEventListener("click", this.handleLike)
+        this.likeSpan.addEventListener("click", () => {
+            handleLike(this.movie, this.likeSpan)
+        })
 
         this.commentSpan.addEventListener("click", () => {
             addComment = !addComment;
             if (addComment) {
-                uiComments.style.display = "block";
+                this.uiComments.style.display = "block";
             } else {
-                uiComments.style.display = "none";
+                this.uiComments.style.display = "none";
             }
         })
 
-        this.commentForm.addEventListener("submit", this.postComment) // where do I add the preventdefault?
-
-        this.deleteBtn.addEventListener("click", this.handleDelete)
+        this.submitBtn.addEventListener("submit", (evt) => {
+            console.log(evt);
+            postComment(this.movie, evt)
+        })
 
     }
+
+    
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 // let renderMovie = (movie) => {
     

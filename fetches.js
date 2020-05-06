@@ -1,22 +1,22 @@
 let API_URL = `http://localhost:3000/`
 
+// fetch(API_URL + `movies`)
+//     .then(response => response.json())
+//     .then((arrOfMovies) => {
+//         // console.log(arrOfMovies)
+//         arrOfMovies.forEach(renderMovie)
+//     })
+
+
 fetch(API_URL + `movies`)
     .then(response => response.json())
-    .then((arrOfMovies) => {
-        // console.log(arrOfMovies)
-        arrOfMovies.forEach(renderMovie)
+    .then((allMovies) => {
+        allMovies.forEach((movie) => {
+            // console.log(movie)
+            new Movie(movie);
+            // new Movie(movie);
     })
-
-// let getAllMovies = () => {
-
-//     fetch(API_URL + `movies`)
-//         .then(response => response.json())
-//         .then((allMovies) => {
-//             allMovies.forEach((movie) => {
-//                 new Movie(movie);
-//         })
-//     })
-// }
+})
 
 
 let handleLike = (movie, likeSpan) => {
@@ -39,6 +39,7 @@ let handleLike = (movie, likeSpan) => {
   }
   
 let postComment = (movie, evt) => {
+    evt.preventDefault()
     let userName = evt.target.author.value
     let userComment = evt.target.content.value
 
@@ -59,5 +60,13 @@ let postComment = (movie, evt) => {
         evt.target.reset()
     })
 }
+
+let deleteAComment = (id) => {
+    return fetch(API_URL + `comments/${id}`, {
+        method: "DELETE"
+      })
+        .then(r => r.json())
+}
+    
 
 
