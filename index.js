@@ -1,135 +1,16 @@
-class Movie {
+searchBar.addEventListener("keyup", e => {
+    const searchString = e.target.value.toLowerCase()
+    const filteredMovies = Movie.all.filter(movie => {
+        return (
+          movie.title.includes(searchString) ||
+          movie.overview.includes(searchString) ||
+          movie.genre_description.includes(searchString)
+        );
+    });
+    displayMovies(filteredMovies);
+});
 
-    static all = []
-    
-    constructor(movie) {
-        this.movie = movie
-
-        Movie.all.push(this)
-
-        // card and blur effect
-        this.outerDiv = document.createElement("div")
-        this.outerDiv.className = "ui fluid card"
-
-        this.secondDiv = document.createElement("div")
-            this.secondDiv.className = "card"
-
-        this.blurringDiv = document.createElement("div")
-            this.blurringDiv.className = "blurring dimmable image"
-
-        this.dimmerDiv = document.createElement("div")
-            this.dimmerDiv.className = "ui dimmer"
-
-        this.hiddenContentDiv = document.createElement("div")
-            this.hiddenContentDiv.className = "content"
-
-        this.centerDiv = document.createElement("div")
-            this.centerDiv.className = "center"
-
-        this.uiInvertedButtonDiv = document.createElement("div")
-            this.uiInvertedButtonDiv.className = "ui inverted button"
-            this.uiInvertedButtonDiv.innerText = `Genre: ${movie.genre_description}, Description: ${movie.overview}`
-
-        this.centerDiv.append(this.uiInvertedButtonDiv)
-        this.hiddenContentDiv.append(this.centerDiv)
-        this.dimmerDiv.append(this.hiddenContentDiv)
-        this.blurringDiv.append(this.dimmerDiv)
-        this.secondDiv.append(this.blurringDiv)
-
-        // content div
-
-        this.contentDiv = document.createElement("div")
-            this.contentDiv.className = "content"
-        this.titleDiv = document.createElement("div")
-            this.titleDiv.className = "header"
-            this.titleDiv.innerText = movie.title
-        this.yearAndLengthDiv = document.createElement("div")
-            this.yearAndLengthDiv.className = "meta"
-            this.yearAndLengthDiv.innerText = `Released on ${movie.year} - Runtime of ${movie.length}`
-       
-        this.contentDiv.append(this.titleDiv, this.yearAndLengthDiv)
-
-        // poster image div
-        this.imageOuterDiv = document.createElement("div")
-            this.imageOuterDiv.className = "image"
-        this.moviePoster = document.createElement("img")
-            this.moviePoster.src = movie.poster_url
-        
-        this.imageOuterDiv.append(this.moviePoster)
-
-        // like and comment div
-
-        this.extraContent = document.createElement("div")
-            this.extraContent.className = "extra content"
-        this.likeSpan = document.createElement("span")
-            this.likeSpan.className = "right floated like"
-            this.likeSpan.innerHTML = `<i class="like icon"></i>${movie.likes} Likes`
-        this.commentSpan = document.createElement("span")
-            this.commentSpan.className = "left floated comment"
-            this.commentSpan.innerHTML = `<i class="comment icon"></i>${movie.comments.length} Comments`
-            // this.commentSpan.style.display = "none"
-        
-        // display for comments
-        this.uiComments = document.createElement("div")
-            this.uiComments.className = "ui comments"
-        this.uiHeader = document.createElement("h3")
-            this.uiHeader.className = "ui dividing header"
-        
-        this.uiComments.append(this.uiHeader)
-
-        this.movie.comments.forEach((singleComment) => {
-            new Comment(singleComment, this.uiComments)
-        })
-        
-        this.commentForm = document.createElement("form")
-            this.commentForm.className = "ui reply form"
-            this.authorField = document.createElement("div")
-                this.authorField.className = "field"
-                this.authorField.innerHTML = `<input type="text" name="first name" placeholder="Your Name">`
-            this.commentField = document.createElement("div")
-                this.commentField.className = "field"
-                this.commentField.innerHTML = `<input type="text" name="last name" placeholder="Comment">`
-            this.submitBtn = document.createElement("div")
-                this.submitBtn.className = "ui blue labeled submit icon button"
-                this.submitBtn.innerHTML = `<i class="icon edit"></i> Add Comment`
-            
-        this.commentForm.append(this.authorField, this.commentField, this.submitBtn)
-        
-        this.uiComments.append(this.commentForm)
-        this.extraContent.append(this.likeSpan, this.commentSpan, this.uiComments)
-        this.outerDiv.append(this.secondDiv, this.imageOuterDiv, this.contentDiv, this.extraContent)
-        movieListCollectionDiv.append(this.outerDiv)
-
-        // click event for image to show description
-        $(".image").click(function() {
-            $(this).parent().find(".ui.dimmer").dimmer("toggle");
-        });
-
-        // likes and comments event listeners
-
-        this.likeSpan.addEventListener("click", () => {
-            handleLike(this.movie, this.likeSpan)
-        })
-
-        this.commentSpan.addEventListener("click", () => {
-            addComment = !addComment;
-            if (addComment) {
-                this.uiComments.style.display = "block";
-            } else {
-                this.uiComments.style.display = "none";
-            }
-        })
-
-        this.submitBtn.addEventListener("submit", (evt) => {
-            console.log(evt);
-            postComment(this.movie, evt)
-        })
-
-    }
-
-    
-}
-
+  
 // let renderMovie = (movie) => {
     
     // // outer div

@@ -39,19 +39,20 @@ let handleLike = (movie, likeSpan) => {
   }
   
 let postComment = (movie, evt) => {
-    evt.preventDefault()
-    let userName = evt.target.author.value
-    let userComment = evt.target.content.value
+    // debugger;
+    let userName = evt.target.name.value
+    let userComment = evt.target.comment.value
+    let commentsArray = movie.comments
+    console.log(commentsArray)
 
     fetch(API_URL + `movies/${movie.id}`, {
-        method: "POST",
+        method: "PATCH",
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
         },
         body: JSON.stringify({
-            author: userName,
-            content: userComment
+            comments: commentsArray
         })
     })
     .then(r => r.json())
