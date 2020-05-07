@@ -45,12 +45,15 @@ class Movie {
             this.titleDiv.innerText = movie.title
         this.yearDiv = document.createElement("div")
             this.yearDiv.className = "meta"
-            this.yearDiv.innerText = `Released: ${movie.year}`
+            this.yearDiv.innerHTML = `<br/>Released: ${movie.year}`
         this.lengthDiv = document.createElement("div")
             this.lengthDiv.className = "meta"
             this.lengthDiv.innerText = `${movie.length}`
+        this.ratingDiv = document.createElement("div")
+            this.ratingDiv.className = "meta"
+            this.ratingDiv.innerText = `Rating: ${movie.rating}`
         
-        this.contentDiv.append(this.titleDiv, this.yearDiv, this.lengthDiv)
+        this.contentDiv.append(this.titleDiv, this.yearDiv, this.lengthDiv, this.ratingDiv)
 
         // poster image div
         this.imageOuterDiv = document.createElement("div")
@@ -81,25 +84,24 @@ class Movie {
         this.uiComments.append(this.uiHeader)
 
         this.movie.comments.forEach((singleComment) => {
-            new Comment(singleComment, this.uiComments, this.commentSpan)
+            new Comment(singleComment, this.uiComments)
         })
         
         this.commentForm = document.createElement("form")
             this.commentForm.className = "ui reply form"
+            this.commentForm.innerHTML = `<br/>Add a comment`
             this.authorField = document.createElement("div")
-                // this.authorField.className = "field"
                 this.authorField.innerHTML = `<input type="text" name="name" value="" placeholder="Your name" class="input-text">`
             this.commentField = document.createElement("div")
-                // this.commentField.className = "field"
                 this.commentField.innerHTML = `<input type="text" name="comment" value="" placeholder="Enter a comment" class="input-text">`
             this.submitBtn = document.createElement("div")
-                // this.submitBtn.className = "ui blue labeled submit icon button"
                 this.submitBtn.innerHTML = `<br/><input type="submit" name="submit" value="Add a Comment" class="ui button">`
             
         this.commentForm.append(this.authorField, this.commentField, this.submitBtn)
+
+        // this.uiComments.append(this.commentForm)
         
-        this.uiComments.append(this.commentForm)
-        this.extraContent.append(this.likeSpan, this.commentSpan, this.uiComments)
+        this.extraContent.append(this.likeSpan, this.commentSpan, this.uiComments, this.commentForm)
         this.outerDiv.append(this.secondDiv, this.imageOuterDiv, this.contentDiv, this.extraContent)
         movieListCollectionDiv.append(this.outerDiv)
 
@@ -118,17 +120,19 @@ class Movie {
             addComment = !addComment;
             if (addComment) {
                 this.uiComments.style.display = "block";
+                this.commentForm.style.display = "block";
             } else {
                 this.uiComments.style.display = "none";
+                this.commentForm.style.display = "none";
             }
         })  
-        
-        // debugger;
-        // console.log(this.commentForm)
+
         this.commentForm.addEventListener("submit", (evt) => {
-            evt.preventDefault()            
-            postComment(this.movie, evt)
+            evt.preventDefault()   
+            // debugger;         
+            postComment(this.movie, evt, this.uiComments)
         })
+        
     }
 
 }

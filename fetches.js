@@ -38,28 +38,29 @@ let handleLike = (movie, likeSpan) => {
     })
   }
   
-let postComment = (movie, evt) => {
+let postComment = (movie, evt, uiComments) => {
     // debugger;
-    let userName = evt.target.name.value
-    let userComment = evt.target.comment.value
-    let commentsArray = movie.comments
-    console.log(commentsArray)
+    let newAuthor = evt.target.name.value
+    let newContent = evt.target.comment.value
 
-    fetch(API_URL + `movies/${movie.id}`, {
-        method: "PATCH",
-        headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
+    fetch(API_URL + `comments`, {
+        method: 'POST',
+        headers:{
+          'Content-Type': 'application/json',
+          "Accept": "application/json"
         },
         body: JSON.stringify({
-            comments: commentsArray
+            content: newContent,
+            author: newAuthor,
+            movie_id: movie.id
         })
-    })
+      })
     .then(r => r.json())
     .then((newlyCreatedComment) => {
-        console.log(newlyCreatedComment)
+        new Comment(newlyCreatedComment, uiComments)
         evt.target.reset()
     })
+    
 }
 
 let deleteAComment = (id) => {

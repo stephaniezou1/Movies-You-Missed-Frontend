@@ -1,15 +1,30 @@
-searchBar.addEventListener("keyup", e => {
-    const searchString = e.target.value.toLowerCase()
-    const filteredMovies = Movie.all.filter(movie => {
-        return (
-          movie.title.includes(searchString) ||
-          movie.overview.includes(searchString) ||
-          movie.genre_description.includes(searchString)
-        );
-    });
-    displayMovies(filteredMovies);
-});
+// searchBar.addEventListener("keyup", e => {
+//     const searchString = e.target.value.toLowerCase()
+//     const filteredMovies = Movie.all.filter(movie => {
+//         return (
+//           movie.title.includes(searchString) ||
+//           movie.overview.includes(searchString) ||
+//           movie.genre_description.includes(searchString)
+//         );
+//     });
+//     displayMovies(filteredMovies);
+// });
 
+function mySearchFunction() {
+    var input, filter, ul, li, item, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("movie-list");
+    li = ul.getElementsByClassName("ui fluid card");  for (i = 0; i < li.length; i++) {
+      item = li[i];
+      txtValue = item.textContent || item.innerText ;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        li[i].style.display = "";
+      } else {
+        li[i].style.display = "none";
+      }
+    }
+  }
   
 // let renderMovie = (movie) => {
     

@@ -1,8 +1,8 @@
 class Comment {
 
-    constructor(singleComment, uiComments, commentSpan){
+    constructor(singleComment, uiComments) {
+        
         this.comment = singleComment
-        // debugger;
         this.author = singleComment.author
         this.content = singleComment.content
         
@@ -15,16 +15,21 @@ class Comment {
             this.textContent = document.createElement("div")
                 this.textContent.innerText = this.content
             this.deleteBtn = document.createElement("button")
-                this.deleteBtn.className = "meta"
+                this.deleteBtn.className = "mini ui right floated button"
                 this.deleteBtn.innerHTML = `delete`
         this.eachComment.append(this.authorName, this.textContent, this.deleteBtn)
         this.commentDiv.append(this.eachComment)
         
+        console.log(this.commentDiv)
+        console.log(uiComments)
         uiComments.append(this.commentDiv)
 
         this.deleteBtn.addEventListener("click", () => {
             this.handleDelete(uiComments)
         })
+
+        // debugger;
+        // console.log(this.commentForm)
     }
 
     handleDelete = (uiComments, commentSpan, evt) => {
