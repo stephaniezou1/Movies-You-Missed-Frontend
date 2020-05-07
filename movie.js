@@ -9,7 +9,6 @@ class Movie {
 
         // card and blur effect
         this.outerDiv = document.createElement("div")
-        this.outerDiv.className = "ui fluid card"
 
         this.secondDiv = document.createElement("div")
             this.secondDiv.className = "card"
@@ -27,14 +26,12 @@ class Movie {
             this.centerDiv.className = "center"
 
         this.uiInvertedButtonDiv = document.createElement("div")
-            this.uiInvertedButtonDiv.className = "ui inverted button"
-            this.uiInvertedButtonDiv.innerText = `Genre: ${movie.genre_description}, Description: ${movie.overview}`
+            this.uiInvertedButtonDiv.innerHTML = `Genre: ${movie.genre_description} <br/> Description: ${movie.overview}`
 
         this.centerDiv.append(this.uiInvertedButtonDiv)
         this.hiddenContentDiv.append(this.centerDiv)
         this.dimmerDiv.append(this.hiddenContentDiv)
-        this.blurringDiv.append(this.dimmerDiv)
-        this.secondDiv.append(this.blurringDiv)
+        
 
         // content div
 
@@ -61,7 +58,7 @@ class Movie {
         this.moviePoster = document.createElement("img")
             this.moviePoster.src = movie.poster_url
         
-        this.imageOuterDiv.append(this.moviePoster)
+        // this.imageOuterDiv.append(this.moviePoster)
 
         // like and comment div
 
@@ -97,18 +94,16 @@ class Movie {
             this.submitBtn = document.createElement("div")
                 this.submitBtn.innerHTML = `<br/><input type="submit" name="submit" value="Add a Comment" class="ui button">`
             
-        this.commentForm.append(this.authorField, this.commentField, this.submitBtn)
-
-        // this.uiComments.append(this.commentForm)
-        
+        this.commentForm.append(this.authorField, this.commentField, this.submitBtn)        
         this.extraContent.append(this.likeSpan, this.commentSpan, this.uiComments, this.commentForm)
-        this.outerDiv.append(this.secondDiv, this.imageOuterDiv, this.contentDiv, this.extraContent)
-        movieListCollectionDiv.append(this.outerDiv)
+        this.blurringDiv.append(this.dimmerDiv, this.moviePoster)
+        this.secondDiv.append(this.blurringDiv, this.contentDiv, this.extraContent)
+        movieListCollectionDiv.append(this.secondDiv)
 
-        // click event for image to show description
-        $(".image").click(function() {
-            $(this).parent().find(".ui.dimmer").dimmer("toggle");
-        });
+        // hover event for image to show description
+            $(this.blurringDiv).dimmer({
+                on: 'hover'
+              });
 
         // likes and comments event listeners
 

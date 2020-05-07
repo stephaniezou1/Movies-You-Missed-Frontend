@@ -1,13 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 .movies {
-    padding: 2em 5em 5em 5em;
+    padding: 2em 5em 2em 8em;
     background-color: rgb(245,245,245);
 }
 
 body {
     background: rgb(245,245,245) !important;
     font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+}
+
+/* card customization */
+.ui.cards {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 /* menu */
@@ -24,9 +33,9 @@ body {
 
 /* general formatting for menu */
 .ui.text.menu {
-    padding-left: 4em;
+    padding-left: 4.5em;
     padding-right: 4em;
-    padding-top: 2em;
+    padding-top: 2.5em;
 }
 
 /* movie card */
@@ -51,7 +60,7 @@ body {
 .ui.card>.image>img, .ui.cards>.card>.image>img {
     display: block;
     width: 100% !important;
-    height: 25em !important;
+    height: 30em !important;
     border-radius: inherit;
     box-shadow: 3px 0px rgb(169,169,169)  !important;
 }

@@ -15,7 +15,7 @@ function mySearchFunction() {
     input = document.getElementById("myInput");
     filter = input.value.toUpperCase();
     ul = document.getElementById("movie-list");
-    li = ul.getElementsByClassName("ui fluid card");  for (i = 0; i < li.length; i++) {
+    li = ul.getElementsByClassName("card");  for (i = 0; i < li.length; i++) {
       item = li[i];
       txtValue = item.textContent || item.innerText ;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {

@@ -15,28 +15,28 @@ class Comment {
             this.textContent = document.createElement("div")
                 this.textContent.innerText = this.content
             this.deleteBtn = document.createElement("button")
-                this.deleteBtn.className = "mini ui right floated button"
-                this.deleteBtn.innerHTML = `delete`
+                // this.deleteBtn.className = "mini ui right floated button"
+                this.deleteBtn.innerText = `delete`
         this.eachComment.append(this.authorName, this.textContent, this.deleteBtn)
         this.commentDiv.append(this.eachComment)
         
-        console.log(this.commentDiv)
-        console.log(uiComments)
+        // console.log(this.commentDiv)
+        // console.log(uiComments)
         uiComments.append(this.commentDiv)
 
         this.deleteBtn.addEventListener("click", () => {
-            this.handleDelete(uiComments)
+            this.handleDelete(this.commentDiv)
         })
 
         // debugger;
         // console.log(this.commentForm)
     }
 
-    handleDelete = (uiComments, commentSpan, evt) => {
+    handleDelete = (commentDiv, commentSpan, evt) => {
         // evt.preventDefault()
         deleteAComment(this.comment.id)
         .then((deletedComment) => {
-            uiComments.remove()
+            commentDiv.remove()
             // commentSpan.innerHTML = `<i class="comment icon"></i>${movie.comments.length - 1} Comments`
             let foundMovieComments = Movie.all.find((jsMovie) => {
                 return jsMovie.movie.id === deletedComment.movie_id})
