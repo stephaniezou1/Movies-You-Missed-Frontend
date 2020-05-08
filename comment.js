@@ -1,6 +1,6 @@
 class Comment {
 
-    constructor(singleComment, uiComments) {
+    constructor(singleComment, uiComments, commentSpan, movie) {
         
         this.comment = singleComment
         this.author = singleComment.author
@@ -22,18 +22,18 @@ class Comment {
         uiComments.append(this.commentDiv)
 
         this.deleteBtn.addEventListener("click", () => {
-            this.handleDelete(this.commentDiv)
+            this.handleDelete(this.commentDiv, commentSpan, movie)
         })
     }
 
-    handleDelete = (commentDiv, commentSpan, evt) => {
+    handleDelete = (commentDiv, commentSpan, movie, evt) => {
         deleteAComment(this.comment.id)
         .then((deletedComment) => {
             commentDiv.remove()
-            // commentSpan.innerHTML = `<i class="comment icon"></i>${movie.comments.length - 1} Comments`
+            commentSpan.innerHTML = `<i class="comment icon"></i>${movie.comments.length - 1} Comments`
+            console.log(commentSpan)
             let foundMovieComments = Movie.all.find((jsMovie) => {
                 return jsMovie.movie.id === deletedComment.movie_id})
-                console.log(foundMovieComments)
             let allCommentsExceptTheDeletedOne = foundMovieComments.movie.comments.filter((comment) => {
                 return comment.id !== deletedComment.id
             })

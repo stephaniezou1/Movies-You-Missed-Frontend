@@ -29,7 +29,7 @@ let handleLike = (movie, likeSpan) => {
     })
   }
   
-let postComment = (movie, evt, uiComments) => {
+let postComment = (movie, evt, uiComments, commentSpan) => {
     let newAuthor = evt.target.name.value
     let newContent = evt.target.comment.value
 
@@ -48,6 +48,7 @@ let postComment = (movie, evt, uiComments) => {
     .then(r => r.json())
     .then((newlyCreatedComment) => {
         new Comment(newlyCreatedComment, uiComments)
+        commentSpan.innerHTML = `<i class="comment icon"></i>${movie.comments.length + 1} Comments`
         evt.target.reset()
     })
     

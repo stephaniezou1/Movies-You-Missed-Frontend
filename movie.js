@@ -8,7 +8,7 @@ class Movie {
         Movie.all.push(this)
 
         // card and blur effect
-        
+
         this.secondDiv = document.createElement("div")
             this.secondDiv.className = "card"
 
@@ -80,7 +80,7 @@ class Movie {
         this.uiComments.append(this.uiHeader)
 
         this.movie.comments.forEach((singleComment) => {
-            new Comment(singleComment, this.uiComments)
+            new Comment(singleComment, this.uiComments, this.commentSpan, this.movie)
         })
         
         this.commentForm = document.createElement("form")
@@ -124,7 +124,7 @@ class Movie {
         this.commentForm.addEventListener("submit", (evt) => {
             evt.preventDefault()   
             // debugger;         
-            postComment(this.movie, evt, this.uiComments)
+            postComment(this.movie, evt, this.uiComments, this.commentSpan)
         })
         
     }
