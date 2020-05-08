@@ -8,8 +8,7 @@ class Movie {
         Movie.all.push(this)
 
         // card and blur effect
-        this.outerDiv = document.createElement("div")
-
+        
         this.secondDiv = document.createElement("div")
             this.secondDiv.className = "card"
 

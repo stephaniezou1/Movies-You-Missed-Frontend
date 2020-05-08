@@ -1,15 +1,3 @@
-// searchBar.addEventListener("keyup", e => {
-//     const searchString = e.target.value.toLowerCase()
-//     const filteredMovies = Movie.all.filter(movie => {
-//         return (
-//           movie.title.includes(searchString) ||
-//           movie.overview.includes(searchString) ||
-//           movie.genre_description.includes(searchString)
-//         );
-//     });
-//     displayMovies(filteredMovies);
-// });
-
 function mySearchFunction() {
     var input, filter, ul, li, item, i, txtValue;
     input = document.getElementById("myInput");

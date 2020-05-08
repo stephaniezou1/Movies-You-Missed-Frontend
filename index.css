@@ -1,22 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 .movies {
-    padding: 2em 5em 2em 8em;
+    padding-left: 8em;
+    padding-right: 4em;
+    padding-top: 3em;
+    padding-bottom: 2em;
     background-color: rgb(245,245,245);
 }
 
 body {
     background: rgb(245,245,245) !important;
     font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
-}
-
-/* card customization */
-.ui.cards {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
 }
 
 /* menu */
@@ -38,7 +32,41 @@ body {
     padding-top: 2.5em;
 }
 
-/* movie card */
+/* card customization */
+.ui.cards {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+/* card sizing and formatting */
+
+.card {
+    width: 18% !important;
+    text-align: center !important;
+}
+
+/* movie poster */
+.ui.card>.image>img, .ui.cards>.card>.image>img {
+    display: flex !important;
+    width: 100% !important;
+    height: auto !important;
+    border-radius: inherit;
+    box-shadow: 3px 0px rgb(169,169,169)  !important;
+}
+
+/* movie title */
+.ui.card>.content>.header, .ui.cards>.card>.content>.header {
+    display: block;
+    margin: '';
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    color:black!important;
+    font-size: 1.1em !important;
+}
+
+/* movie card contents */
 .ui.card>.content, .ui.cards>.card>.content {
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
@@ -54,24 +82,6 @@ body {
     font-size: 1em;
     border-radius: 0;
     color: rgba(0,0,0,.4);
-}
-
-/* movie poster */
-.ui.card>.image>img, .ui.cards>.card>.image>img {
-    display: block;
-    width: 100% !important;
-    height: 30em !important;
-    border-radius: inherit;
-    box-shadow: 3px 0px rgb(169,169,169)  !important;
-}
-
-/* movie title */
-.ui.card>.content>.header, .ui.cards>.card>.content>.header {
-    display: block;
-    margin: '';
-    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
-    color:black!important;
-    font-size: 1.1em !important;
 }
 
 /* extra content details */

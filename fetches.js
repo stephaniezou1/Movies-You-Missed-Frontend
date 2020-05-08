@@ -1,20 +1,11 @@
 let API_URL = `http://localhost:3000/`
 
-// fetch(API_URL + `movies`)
-//     .then(response => response.json())
-//     .then((arrOfMovies) => {
-//         // console.log(arrOfMovies)
-//         arrOfMovies.forEach(renderMovie)
-//     })
-
 
 fetch(API_URL + `movies`)
     .then(response => response.json())
     .then((allMovies) => {
         allMovies.forEach((movie) => {
-            // console.log(movie)
             new Movie(movie);
-            // new Movie(movie);
     })
 })
 
@@ -39,7 +30,6 @@ let handleLike = (movie, likeSpan) => {
   }
   
 let postComment = (movie, evt, uiComments) => {
-    // debugger;
     let newAuthor = evt.target.name.value
     let newContent = evt.target.comment.value
 
