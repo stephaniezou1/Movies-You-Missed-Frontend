@@ -28,5 +28,5 @@ In your terminal...
     $ cd [repo location]
     $ npm install```
     
-  
-    ### Start developing!
+    
+  ### Start developing!
