@@ -24,9 +24,10 @@ In your terminal...
 
 1. Install
 
+
     ```git clone
     $ cd [repo location]
-    $ npm install```
+    $ npm install ```
     
     
   ### Start developing!
