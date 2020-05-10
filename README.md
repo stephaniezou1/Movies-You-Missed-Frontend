@@ -26,7 +26,11 @@ In your terminal...
 
         ```$ git clone
         $ cd [repo location]
-        $ npm install ```
+        $ npm install```
+
+2. Launch
+
+        ```$ open index.html```
 
     
   ### Start developing!
