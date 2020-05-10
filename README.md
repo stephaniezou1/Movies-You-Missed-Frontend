@@ -27,16 +27,6 @@ In your terminal...
     ```git clone
     $ cd [repo location]
     $ npm install```
-  
-2. Install [Ruby](https://www.ruby-lang.org/en/)
     
-    ```$ brew install ruby```
-
-3. Install [Rails](https://rubyonrails.org/)
-
-    ```$ gem install rails```
-
-4. Install [PostgreSQL](https://www.postgresql.org/)
-
-    ```$ brew install postgresql```
-
+  
+    ### Start developing!
