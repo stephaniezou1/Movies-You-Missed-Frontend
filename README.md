@@ -26,7 +26,7 @@ In your terminal...
 
         ```git clone
         $ cd [repo location]
-        $ npm install```
+        $ npm install ```
 
     
   ### Start developing!
