@@ -24,7 +24,7 @@ In your terminal...
 
 1. Install
 
-        ```git clone
+        ```$ git clone
         $ cd [repo location]
         $ npm install ```
 
